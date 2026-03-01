@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>About Kopal — Bee Stars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .page-hero {
+      background: var(--cream); padding: 160px 0 100px;
+    }
+    .about-hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-hero-img {
+      border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 3/4; box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .about-hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .about-hero-img::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 30%;
+      background: linear-gradient(to top, rgba(250,248,244,0.4), transparent);
+    }
+    .about-hero-text h1 { margin-bottom: 8px; }
+    .about-hero-text .subtitle {
+      font-size: 1.1rem; color: var(--amber); font-weight: 600;
+      margin-bottom: 28px; letter-spacing: 0.3px;
+    }
+    .about-hero-text p { line-height: 1.85; margin-bottom: 18px; }
+    @media(max-width:900px) { .about-hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ACHIEVEMENTS */
+    #achievements { background: var(--ink); }
+    #achievements .label { color: var(--amber); }
+    #achievements h2 { color: var(--white); margin-bottom: 56px; }
+    .ach-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+    .ach-item {
+      background: rgba(255,255,255,0.03);
+      padding: 44px 32px; text-align: center;
+      transition: background var(--transition);
+    }
+    .ach-item:hover { background: rgba(232,160,0,0.08); }
+    .ach-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .ach-title { font-family: var(--font-head); font-size: 1.4rem; color: var(--white); margin-bottom: 8px; }
+    .ach-sub { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+    @media(max-width:900px) { .ach-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px) { .ach-grid { grid-template-columns: 1fr; } }
+
+    /* MISSION */
+    #mission { background: var(--white); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+    .mission-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .mission-img img { width: 100%; display: block; }
+    .mission-text p { margin-bottom: 18px; line-height: 1.85; }
+    @media(max-width:900px) { .mission-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* NEWS */
+    #news { background: var(--cream); }
+    .news-list { margin-top: 48px; }
+    .news-item {
+      display: flex; align-items: center; gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left var(--transition);
+    }
+    .news-item:first-child { border-top: 1px solid var(--border); }
+    .news-item:hover { padding-left: 12px; }
+    .news-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+    .news-title { flex: 1; font-size: 1rem; font-weight: 500; }
+    .news-arrow { color: var(--amber); font-size: 1.1rem; transition: transform var(--transition); }
+    .news-item:hover .news-arrow { transform: translateX(4px); }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" style="color:var(--ink)"><span class="bee">🐝</span> Bee Stars</a>
+    <ul class="nav-links">
+      <li><a href="index.html" style="color:var(--ink-soft)">Home</a></li>
+      <li><a href="about.html" class="active" style="color:var(--ink)">About</a></li>
+      <li><a href="classes.html" style="color:var(--ink-soft)">Classes</a></li>
+      <li><a href="contact.html" style="color:var(--ink-soft)">FAQ</a></li>
+      <li><a href="contact.html#register" class="nav-cta-btn">Register Free</a></li>
+    </ul>
+  </div>
+</nav>
+<style>
+  #nav { background: rgba(250,248,244,0.97); box-shadow: 0 1px 0 var(--border); }
+  #nav .nav-links a { color: var(--ink-soft); }
+  #nav .nav-links a:hover { color: var(--ink); }
+  #nav .nav-links a.active { color: var(--ink); }
+</style>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="about-hero-grid">
+      <div class="about-hero-img reveal-l">
+        <img src="images/hero_class.jpg" alt="Kopal Tare teaching Bee Stars"/>
+      </div>
+      <div class="about-hero-text reveal-r">
+        <div class="label">Founder &amp; Instructor</div>
+        <h1>Kopal Tare</h1>
+        <p class="subtitle">Dublin High School · State-Level Speller · Community Educator</p>
+        <p>I started Bee Stars because I remember exactly how it felt to stand at a microphone in front of judges, with a word I'd never heard before. I remember the way etymology clicked — the moment I realized that if I knew the Latin root, I could spell the word without ever having seen it.</p>
+        <p>I want every student who walks into a spelling bee to feel that same confidence. That's why I built this program, and why I teach it completely free.</p>
+        <a href="contact.html#register" class="btn btn-dark" style="margin-top:12px">Join the Next Session &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="label">Credentials</div>
+    <h2>Competition experience across every level.</h2>
+    <div class="ach-grid">
+      <div class="ach-item reveal d1"><div class="ach-icon">🏫</div><div class="ach-title">School</div><div class="ach-sub">Champion at Dublin High School spelling bee</div></div>
+      <div class="ach-item reveal d2"><div class="ach-icon">📍</div><div class="ach-title">District</div><div class="ach-sub">Top placements in district-level competition</div></div>
+      <div class="ach-item reveal d3"><div class="ach-icon">🥈</div><div class="ach-title">County</div><div class="ach-sub">Represented Dublin at the Alameda County level</div></div>
+      <div class="ach-item reveal d4"><div class="ach-icon">🌟</div><div class="ach-title">State</div><div class="ach-sub">Advanced to state-level spelling bee competition</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-img reveal-l">
+        <img src="images/zoom_grid.jpg" alt="Students in Bee Stars class"/>
+      </div>
+      <div class="mission-text reveal-r">
+        <div class="label">The Mission</div>
+        <h2>Why free? Why now?</h2>
+        <p>Access to quality spelling bee coaching has traditionally required expensive tutors or specialized programs. Bee Stars was built to change that — every student, regardless of background, deserves the same preparation.</p>
+        <p>Sessions cover not just word lists, but the underlying systems: etymology, phonetics, diacritics, and linguistics. These tools don't just help you spell — they help you understand language.</p>
+        <p>Over two years and two cohorts, Bee Stars has helped students win their first spelling bees, advance to higher rounds, and — most importantly — develop a genuine love for words.</p>
+        <a href="classes.html" class="btn btn-outline" style="margin-top:8px">See the Curriculum &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="container">
+    <div class="label reveal">Press &amp; Recognition</div>
+    <h2 class="reveal">In the news.</h2>
+    <div class="news-list">
+      <div class="news-item reveal d1"><div class="news-dot"></div><span class="news-title">Dublin Students Win Top Spots in Spelling Bee, Advance to State</span><span class="news-arrow">→</span></div>
+      <div class="news-item reveal d2"><div class="news-dot"></div><span class="news-title">Dublin Spelling Bee Champion Offers Free Spelling Bee Coaching</span><span class="news-arrow">→</span></div>
+      <div class="news-item reveal d3"><div class="news-dot"></div><span class="news-title">Congratulations to Alameda County Spelling Bee Winners!</span><span class="news-arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:100px 0;text-align:center">
+  <div class="container reveal">
+    <div class="label" style="justify-content:center;color:var(--amber)">Join Bee Stars</div>
+    <h2 style="color:var(--white);margin-bottom:16px">Your child's spelling journey starts here.</h2>
+    <p style="color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 40px;font-size:1.05rem">Register now for the next 10-week cohort. Free, online, and open to grades K–7.</p>
+    <a href="contact.html#register" class="btn btn-amber">Register for Free &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:16px;font-size:1.5rem">🐝 Bee Stars</a><p>A free community spelling bee tutoring program, founded by Kopal Tare.</p></div>
+      <div class="footer-col"><h5>Navigation</h5><a href="index.html">Home</a><a href="about.html">About Kopal</a><a href="classes.html">Classes &amp; Gallery</a><a href="contact.html">FAQ &amp; Contact</a></div>
+      <div class="footer-col"><h5>Contact</h5><a href="mailto:kopal.tare@gmail.com">kopal.tare@gmail.com</a><a>Sundays · 5:30–6:00 PM PST</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 Bee Stars by Kopal Tare. All Rights Reserved.</span><span>Dublin, CA</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

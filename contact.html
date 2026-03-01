@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>FAQ &amp; Contact — Bee Stars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .page-hero {
+      background: var(--ink); padding: 160px 0 100px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content:''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 40% 60%, rgba(232,160,0,0.1) 0%, transparent 60%);
+    }
+    .page-hero h1 { color: var(--white); margin-bottom: 16px; }
+    .page-hero p { color: rgba(255,255,255,0.5); font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+
+    /* FAQ */
+    #faq-section { background: var(--cream); }
+    .faq-cols { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+    .faq-sidebar h2 { margin-bottom: 16px; }
+    .faq-sidebar p { margin-bottom: 28px; line-height: 1.8; }
+    .faq-list { }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0; cursor: pointer;
+      font-size: 1rem; font-weight: 600; color: var(--ink);
+      user-select: none; gap: 16px;
+      transition: color var(--transition);
+    }
+    .faq-q:hover { color: var(--amber); }
+    .faq-icon {
+      width: 30px; height: 30px; flex-shrink: 0;
+      border-radius: 50%; border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 300; color: var(--ink-soft);
+      transition: transform var(--transition), background var(--transition), border-color var(--transition);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--amber); border-color: var(--amber); color: var(--ink); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      font-size: 0.95rem; color: var(--ink-soft);
+      line-height: 1.8; padding: 0;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 22px; }
+    @media(max-width:900px) { .faq-cols { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* CONTACT FORM */
+    #register { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
+    .contact-info h2 { margin-bottom: 20px; }
+    .contact-info p { line-height: 1.85; margin-bottom: 28px; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 16px; font-size: 0.95rem;
+    }
+    .contact-detail-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(232,160,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-detail a { color: var(--ink-soft); font-weight: 500; transition: color var(--transition); }
+    .contact-detail a:hover { color: var(--amber); }
+    .form-card {
+      background: var(--cream); border-radius: 20px;
+      padding: 48px; box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+    .form-card h3 { font-family: var(--font-head); font-size: 1.6rem; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .fg label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+    .fg input, .fg textarea, .fg select {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 13px 16px;
+      color: var(--ink); font-size: 0.95rem;
+      font-family: var(--font-body); outline: none;
+      transition: border-color var(--transition);
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--amber); }
+    .fg textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%; background: var(--ink); color: var(--white);
+      border: none; padding: 16px; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      font-family: var(--font-body); letter-spacing: 0.3px;
+      transition: background var(--transition), transform var(--transition);
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: #2a2826; transform: translateY(-2px); }
+    .form-submit.success { background: #2e7d32; }
+    @media(max-width:900px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="dark-mode">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><span class="bee">🐝</span> Bee Stars</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="contact.html" class="active">FAQ</a></li>
+      <li><a href="#register" class="nav-cta-btn">Register Free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container reveal">
+    <div class="label" style="justify-content:center">Questions? We have answers.</div>
+    <h1>FAQ &amp; Contact</h1>
+    <p>Everything you need to know about Bee Stars, plus a form to register or ask us anything.</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq-section">
+  <div class="container">
+    <div class="faq-cols">
+      <div class="reveal-l">
+        <div class="label">FAQ</div>
+        <h2>Common questions.</h2>
+        <p>Can't find the answer you're looking for? Use the contact form below and we'll respond promptly.</p>
+        <a href="#register" class="btn btn-dark">Register Now &rarr;</a>
+      </div>
+      <div class="faq-list reveal-r">
+        <div class="faq-item">
+          <div class="faq-q">What happens during a weekly session?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Each session opens with an in-depth lesson on a focused topic — diacritics, etymology, phonetics, or competition strategy — followed by interactive practice including live spelling rounds, word games, and activities. Sessions are structured to be engaging and educational, building skills that carry over into real competition.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long is the program?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Bee Stars runs for 10 weeks, with one 30-minute session per week on Sundays from 5:30–6:00 PM PST. The program takes place annually from November through January.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Where are sessions held?<span class="faq-icon">+</span></div>
+          <div class="faq-a">All sessions are held online via Zoom. After registering, you'll receive a Zoom link and any relevant materials before the first class. No special setup is required.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is there a cost to participate?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Bee Stars is completely free — no tuition, no materials fee, no hidden costs. It is a community service program, and that will never change.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Who can join?<span class="faq-icon">+</span></div>
+          <div class="faq-a">The program is designed for students in Grades K–7, but all motivated learners are welcome regardless of grade level or prior spelling bee experience. There are no prerequisites — students at all levels benefit from the foundational skills we cover.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do students need prior spelling bee experience?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Not at all. Bee Stars is designed to bring any student up to speed, whether they've never been in a spelling bee or are preparing for their fifth. The curriculum builds progressively across the 10-week session.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">When does the next cohort start?<span class="faq-icon">+</span></div>
+          <div class="faq-a">The annual program starts in early November and runs through January. Register using the form below and you'll be notified of the exact start date and Zoom details as the session approaches.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / REGISTER -->
+<section id="register">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal-l">
+        <div class="label">Get in Touch</div>
+        <h2>Register or ask a question.</h2>
+        <p>Whether you're ready to sign up or want more details first, send a message and you'll hear back promptly.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉</div>
+          <div><a href="mailto:kopal.tare@gmail.com">kopal.tare@gmail.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div><span style="color:var(--ink-soft);font-weight:500">Sundays, 5:30–6:00 PM PST</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">💻</div>
+          <div><span style="color:var(--ink-soft);font-weight:500">Online via Zoom</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🆓</div>
+          <div><span style="color:var(--ink-soft);font-weight:500">Completely free, always</span></div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="form-card">
+          <h3>Send a Message</h3>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="fg"><label>First Name</label><input type="text" placeholder="Jane" required /></div>
+              <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required /></div>
+            </div>
+            <div class="fg"><label>Email Address</label><input type="email" placeholder="jane@example.com" required /></div>
+            <div class="fg"><label>Phone (optional)</label><input type="tel" placeholder="+1 (555) 000-0000" /></div>
+            <div class="fg">
+              <label>Student Grade Level</label>
+              <select>
+                <option value="">Select a grade...</option>
+                <option>Kindergarten</option><option>1st Grade</option><option>2nd Grade</option>
+                <option>3rd Grade</option><option>4th Grade</option><option>5th Grade</option>
+                <option>6th Grade</option><option>7th Grade</option><option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message</label><textarea placeholder="I'd like to register my child for the upcoming session, or I have a question about..."></textarea></div>
+            <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:16px;font-size:1.5rem">🐝 Bee Stars</a><p>A free community spelling bee tutoring program, founded by Kopal Tare.</p></div>
+      <div class="footer-col"><h5>Navigation</h5><a href="index.html">Home</a><a href="about.html">About Kopal</a><a href="classes.html">Classes &amp; Gallery</a><a href="contact.html">FAQ &amp; Contact</a></div>
+      <div class="footer-col"><h5>Contact</h5><a href="mailto:kopal.tare@gmail.com">kopal.tare@gmail.com</a><a>Sundays · 5:30–6:00 PM PST</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 Bee Stars by Kopal Tare. All Rights Reserved.</span><span>Dublin, CA</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '✓ Message Sent!';
+  btn.classList.add('success');
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.classList.remove('success');
+    e.target.reset();
+  }, 3500);
+}
+</script>
+</body>
+</html>

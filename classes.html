@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Classes & Gallery — Bee Stars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      background: var(--ink); padding: 160px 0 100px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content:''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(232,160,0,0.12) 0%, transparent 65%);
+    }
+    .page-hero h1 { color: var(--white); margin-bottom: 16px; }
+    .page-hero p { color: rgba(255,255,255,0.5); font-size: 1.1rem; max-width: 540px; margin: 0 auto; }
+
+    /* VIDEO SECTION */
+    #video-clips { background: var(--cream); }
+    .clips-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .clip-card {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--white);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .clip-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.14); }
+    .clip-thumb {
+      position: relative; aspect-ratio: 16/9; overflow: hidden;
+    }
+    .clip-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .clip-card:hover .clip-thumb img { transform: scale(1.04); }
+    .clip-play {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.3); transition: background var(--transition);
+    }
+    .clip-card:hover .clip-play { background: rgba(0,0,0,0.45); }
+    .play-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.6);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.4rem;
+      transition: background var(--transition), transform var(--transition);
+      backdrop-filter: blur(6px); cursor: pointer;
+    }
+    .clip-card:hover .play-circle { background: var(--amber); border-color: var(--amber); transform: scale(1.1); }
+    .clip-info { padding: 20px 24px; }
+    .clip-info .tag {
+      display: inline-block; background: rgba(232,160,0,0.12);
+      color: var(--amber); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px; margin-bottom: 8px;
+    }
+    .clip-info h4 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 6px; }
+    .clip-info p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
+    @media(max-width:900px) { .clips-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:600px) { .clips-grid { grid-template-columns: 1fr; } }
+
+    /* FULL GALLERY */
+    #full-gallery { background: var(--white); }
+    .gallery-masonry {
+      columns: 3; column-gap: 20px; margin-top: 48px;
+    }
+    .gallery-item {
+      break-inside: avoid; margin-bottom: 20px;
+      border-radius: 12px; overflow: hidden;
+      cursor: zoom-in; position: relative;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+    .gallery-item img { width: 100%; display: block; }
+    .gallery-item-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(18,16,14,0.75) 0%, transparent 100%);
+      padding: 28px 16px 14px;
+      color: var(--white); font-size: 0.82rem; font-weight: 500;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .gallery-item:hover .gallery-item-label { opacity: 1; }
+    @media(max-width:900px) { .gallery-masonry { columns: 2; } }
+    @media(max-width:600px) { .gallery-masonry { columns: 1; } }
+
+    /* CURRICULUM */
+    #curriculum { background: var(--cream); }
+    .curr-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .curr-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px 30px;
+      border-top: 3px solid transparent;
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .curr-card:hover { border-color: var(--amber); transform: translateY(-4px); }
+    .curr-num {
+      font-family: var(--font-head); font-size: 2.8rem;
+      font-weight: 700; color: rgba(232,160,0,0.25);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .curr-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .curr-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; }
+    @media(max-width:900px) { .curr-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:600px) { .curr-grid { grid-template-columns: 1fr; } }
+
+    /* SCHEDULE */
+    #schedule { background: var(--ink); }
+    #schedule .label { color: var(--amber); }
+    #schedule h2 { color: var(--white); margin-bottom: 48px; }
+    .schedule-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .sched-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius); padding: 32px;
+      transition: border-color var(--transition);
+    }
+    .sched-item:hover { border-color: rgba(232,160,0,0.4); }
+    .sched-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+    .sched-value { font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--white); }
+    .sched-sub { font-size: 0.88rem; color: rgba(255,255,255,0.4); margin-top: 6px; }
+    @media(max-width:768px) { .schedule-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="dark-mode">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><span class="bee">🐝</span> Bee Stars</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html" class="active">Classes</a></li>
+      <li><a href="contact.html">FAQ</a></li>
+      <li><a href="contact.html#register" class="nav-cta-btn">Register Free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container reveal">
+    <div class="label" style="justify-content:center">2024–2026 Sessions</div>
+    <h1>Classes &amp; Gallery</h1>
+    <p>Real sessions, real students, real results. Explore what happens inside every Bee Stars class.</p>
+  </div>
+</div>
+
+<!-- VIDEO CLIPS -->
+<section id="video-clips">
+  <div class="container">
+    <div class="label reveal">Short Clips</div>
+    <h2 class="reveal">Watch a few minutes of class.</h2>
+    <div class="clips-grid">
+      <div class="clip-card reveal d1">
+        <div class="clip-thumb">
+          <img src="images/hero_class.jpg" alt="Spelling bee practice clip"/>
+          <div class="clip-play">
+            <div class="play-circle" data-video="videos/clip_kopal_smiling_web.mp4">&#9654;</div>
+          </div>
+        </div>
+        <div class="clip-info">
+          <span class="tag">Class 5 &middot; Live Practice</span>
+          <h4>Spelling Bee Round</h4>
+          <p>Students take turns spelling words while applying strategies learned throughout the program.</p>
+        </div>
+      </div>
+      <div class="clip-card reveal d2">
+        <div class="clip-thumb">
+          <img src="images/blooket_game.jpg" alt="Blooket game"/>
+          <div class="clip-play">
+            <div class="play-circle" data-video="videos/clip_blooket_game_web.mp4">&#9654;</div>
+          </div>
+        </div>
+        <div class="clip-info">
+          <span class="tag">Class 6 &middot; Game Time</span>
+          <h4>Blooket Vocabulary Game</h4>
+          <p>An interactive Blooket session where students compete to reinforce spelling and vocabulary knowledge.</p>
+        </div>
+      </div>
+      <div class="clip-card reveal d3">
+        <div class="clip-thumb">
+          <img src="images/spelling_bee_rules.jpg" alt="Spelling bee rules"/>
+          <div class="clip-play">
+            <div class="play-circle" data-video="videos/clip_spelling_bee_web.mp4">&#9654;</div>
+          </div>
+        </div>
+        <div class="clip-info">
+          <span class="tag">Class 5 &middot; Strategy</span>
+          <h4>Spelling Bee Rules &amp; Tips</h4>
+          <p>Kopal walks through official spelling bee rules and the strategies she's used in competition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section id="full-gallery">
+  <div class="container">
+    <div class="label reveal">Photo Gallery</div>
+    <h2 class="reveal">From the classroom.</h2>
+    <p class="reveal" style="max-width:560px">Every image below is from a real Bee Stars session — slides, students, and teaching moments.</p>
+    <div class="gallery-masonry reveal">
+      <div class="gallery-item" onclick="lightbox('images/hero_class.jpg')">
+        <img src="images/hero_class.jpg" alt="Kopal and students"/>
+        <div class="gallery-item-label">Kopal smiling with students — Class 5</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/blooket_game.jpg')">
+        <img src="images/blooket_game.jpg" alt="Blooket game"/>
+        <div class="gallery-item-label">Blooket vocabulary game — Class 6</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/slide_overview.jpg')">
+        <img src="images/slide_overview.jpg" alt="Program overview"/>
+        <div class="gallery-item-label">10-week curriculum overview</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/zoom_grid.jpg')">
+        <img src="images/zoom_grid.jpg" alt="Full class Zoom view"/>
+        <div class="gallery-item-label">Full class Zoom session — Class 5</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/slide_diacritics.jpg')">
+        <img src="images/slide_diacritics.jpg" alt="Diacritics lesson"/>
+        <div class="gallery-item-label">Diacritics + Word Bases — Class 4</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/slide_greek.jpg')">
+        <img src="images/slide_greek.jpg" alt="Greek roots"/>
+        <div class="gallery-item-label">Greek roots deep dive — Class 4</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/slide_linguistics.jpg')">
+        <img src="images/slide_linguistics.jpg" alt="Linguistics"/>
+        <div class="gallery-item-label">Linguistics breakdown — Class 3</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/slide_french.jpg')">
+        <img src="images/slide_french.jpg" alt="French rules"/>
+        <div class="gallery-item-label">French language rules — Class 6</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/blooket_live.jpg')">
+        <img src="images/blooket_live.jpg" alt="Blooket leaderboard"/>
+        <div class="gallery-item-label">Live Blooket leaderboard action</div>
+      </div>
+      <div class="gallery-item" onclick="lightbox('images/spelling_bee_rules.jpg')">
+        <img src="images/spelling_bee_rules.jpg" alt="Spelling bee rules"/>
+        <div class="gallery-item-label">Official spelling bee rules review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="container">
+    <div class="label reveal">What You'll Learn</div>
+    <h2 class="reveal">Six pillars of spelling mastery.</h2>
+    <div class="curr-grid">
+      <div class="curr-card reveal d1"><div class="curr-num">01</div><h4>Etymology</h4><p>Word origins from Latin, Greek, French and more — decode unfamiliar words with confidence.</p></div>
+      <div class="curr-card reveal d2"><div class="curr-num">02</div><h4>Linguistics</h4><p>Language rules and phonetic patterns that make English spelling predictable.</p></div>
+      <div class="curr-card reveal d3"><div class="curr-num">03</div><h4>Diacritics & IPA</h4><p>Master the International Phonetic Alphabet used in official spelling bee dictionaries.</p></div>
+      <div class="curr-card reveal d4"><div class="curr-num">04</div><h4>Memorization Tactics</h4><p>Proven techniques to retain and recall words under the pressure of competition.</p></div>
+      <div class="curr-card reveal d5"><div class="curr-num">05</div><h4>Competition Strategy</h4><p>How to ask questions, buy time, and stay composed when standing at the microphone.</p></div>
+      <div class="curr-card reveal d6"><div class="curr-num">06</div><h4>Vocabulary Building</h4><p>Contextual word learning that actually sticks — far beyond rote memorization.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <div class="label">Schedule</div>
+    <h2>When &amp; how we meet.</h2>
+    <div class="schedule-grid">
+      <div class="sched-item reveal d1"><div class="sched-label">Day &amp; Time</div><div class="sched-value">Sundays, 5:30–6:00 PM</div><div class="sched-sub">Pacific Standard Time (PST)</div></div>
+      <div class="sched-item reveal d2"><div class="sched-label">Platform</div><div class="sched-value">Online via Zoom</div><div class="sched-sub">Link sent upon registration</div></div>
+      <div class="sched-item reveal d3"><div class="sched-label">Program Length</div><div class="sched-value">10 Weeks</div><div class="sched-sub">November through January, annually</div></div>
+      <div class="sched-item reveal d4"><div class="sched-label">Cost</div><div class="sched-value">Completely Free</div><div class="sched-sub">No fees, no materials cost, ever</div></div>
+    </div>
+    <div style="margin-top:48px;text-align:center">
+      <a href="contact.html#register" class="btn btn-amber">Reserve Your Spot &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:16px;font-size:1.5rem">🐝 Bee Stars</a>
+        <p>A free community spelling bee tutoring program, founded by Kopal Tare and dedicated to helping young learners shine.</p>
+      </div>
+      <div class="footer-col"><h5>Navigation</h5><a href="index.html">Home</a><a href="about.html">About Kopal</a><a href="classes.html">Classes &amp; Gallery</a><a href="contact.html">FAQ &amp; Contact</a></div>
+      <div class="footer-col"><h5>Contact</h5><a href="mailto:kopal.tare@gmail.com">kopal.tare@gmail.com</a><a>Sundays · 5:30–6:00 PM PST</a><a>Online via Zoom</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 Bee Stars by Kopal Tare. All Rights Reserved.</span><span>Dublin, CA</span></div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="modal-overlay" id="lbOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box" style="text-align:center">
+    <button class="modal-close" onclick="document.getElementById('lbOverlay').classList.remove('open')">&#10005;</button>
+    <img id="lbImg" src="" alt="" style="max-width:90vw;max-height:82vh;border-radius:12px"/>
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box">
+    <button class="modal-close">&#10005;</button>
+    <video id="modalVideo" controls playsinline></video>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+function lightbox(src) {
+  document.getElementById('lbImg').src = src;
+  document.getElementById('lbOverlay').classList.add('open');
+}
+// Wire play circles
+document.querySelectorAll('.play-circle[data-video]').forEach(el => {
+  el.addEventListener('click', () => {
+    const v = document.getElementById('modalVideo');
+    v.src = el.dataset.video;
+    document.getElementById('videoModal').classList.add('open');
+    v.play();
+  });
+});
+</script>
+</body>
+</html>
